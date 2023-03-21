@@ -1,33 +1,33 @@
 {
-	"resourceGroup": {
-		"eastus2": "eus2rgdnsp01",
-		"centralus": "cusrgdnsp01"
-	},
-	"zoneNames": {
-		"Microsoft.Storage/storageAccounts": {
-			"file": ".file.core.windows.net",
-			"blob": ".blob.core.windows.net",
-			"queue": ".queue.core.windows.net",
-			"web": ".web.core.windows.net"
-		},
-		"Microsoft.KeyVault/vaults": {
-			"vault": ".vaultcore.azure.net"
-		},
-		"Microsoft.EventGrid/domains": {
-			"domain": ".eventgrid.azire.net"
-		},
-		"Microsoft.Sql/servers": {
-			"sqlServer": ".database.windows.net"
-		},
-		"Microsoft.DocumentDB/databaseAccounts": {
-			"sql": ".documents.azure.com"
-		},
-		"Microsoft.DataFactory/factories": {
-			"dataFactory": ".datafactory.azure.net",
-			"portal": ".adf.azure.com"
-		},
-		"Microsoft.Databricks/workspaces": {
-			"databricks_ui_api": ".azuredatabricks.net"
-		}
-	}
+  "resourceGroup": {
+    "eastus2": "eus2rgdnsp01",
+    "centralus": "cusrgdnsp01"
+  },
+  "zoneNames": {
+    "Microsoft.Storage/storageAccounts": {
+      "file": ".file.core.windows.net",
+      "blob": ".blob.core.windows.net",
+      "queue": ".queue.core.windows.net",
+      "web": ".web.core.windows.net"
+    },
+    "Microsoft.KeyVault/vaults": {
+      "vault": ".vaultcore.azure.net"
+    },
+    "Microsoft.EventGrid/domains": {
+      "domain": ".eventgrid.azire.net"
+    },
+    "Microsoft.Sql/servers": {
+      "sqlServer": ".database.windows.net"
+    },
+    "Microsoft.DocumentDB/databaseAccounts": {
+      "sql": ".documents.azure.com"
+    },
+    "Microsoft.DataFactory/factories": {
+      "dataFactory": ".datafactory.azure.net",
+      "portal": ".adf.azure.com"
+    },
+    "Microsoft.Databricks/workspaces": {
+      "databricks_ui_api": ".azuredatabricks.net"
+    }
+  }
 }
