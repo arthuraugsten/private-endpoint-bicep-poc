@@ -2,7 +2,7 @@
 param location string
 
 @maxLength(30)
-@minLength(10)
+@minLength(3)
 param shortName string
 
 @description('A list of address blocks reserved for this virtual network in CIDR notation.')
@@ -10,15 +10,14 @@ param shortName string
 param addressPrefixes array
 
 @description('The list of DNS servers IP addresses.')
-@minLength(2)
-param dnsServers array
+// @minLength(2)
+param dnsServers array = []
 
 @description('A list of subnets in a Virtual Network. It should follow **_Subnet_** object schema.')
-@minLength(1)
+// @minLength(1)
 param subnets array
 
 @description('A list of peerings in a Virtual Network. It should follow **_VirtualNetworkPeering_** object schema.')
-@minLength(1)
 param virtualNetworkPeerings array = []
 
 var regionCode = loadJsonContent('./internals/region-settings.json')[location]

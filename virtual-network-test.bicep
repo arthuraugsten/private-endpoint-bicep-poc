@@ -1,12 +1,13 @@
-// az deployment group create --resource-group <resource-group> --name vnet-resource-test --template-file ./tests/network/virtual-network-test.bicep
+// az deployment group create --resource-group eusrgnet01 --name vnet-resource-test --template-file ./virtual-network-test.bicep
 
-module vnetDeploy '../../src/network/virtual-network/virtual-network.bicep' = {
+var subnetAddressPrefix = '10.99.2.0/24'
+module vnetDeploy './virtual-network.bicep' = {
   name: 'dpl-vnet-test'
   params: {
     location: 'eastus2'
     shortName: 'sample'
-    addressPrefixes: []
-    dnsServers: [ '' ]
+    addressPrefixes: [ '10.99.0.0/16' ]
+    // dnsServers: [ '10.99.0.100', '10.99.0.101' ]
     subnets: []
   }
 }
