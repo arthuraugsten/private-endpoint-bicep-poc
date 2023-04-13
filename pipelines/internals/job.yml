@@ -1,0 +1,87 @@
+parameters:
+#  The name of the job.
+- name: name 
+  type: string
+
+#  The display name of the job.
+- name: displayName 
+  type: string
+  default: ''
+
+#  A list of one or more jobs that this job depends on.
+- name: dependsOn 
+  type: object
+  default: []
+
+#  Any conditions that are required to be satisfied to execute the job.
+- name: condition 
+  type: string
+  default: ''
+
+- name: agentPoolShortName
+  type: string
+
+#  The deployment platform.  Helps determine the agent pool.
+- name: deploymentOs
+  type: string
+  values:
+  - windows
+  - linux
+
+#  The environment code indicating the environment to deploy to.
+- name: environment
+  type: string
+  default: 'n'
+  values:
+  - n
+  - d
+  - q
+  - t
+  - p
+
+- name: timeoutInMinutes
+  type: number
+  default: 60
+
+#  A list of one or more variable objects.
+- name: variables
+  type: object
+  default: []
+
+#  A list of one or more tasks to execute.
+- name: steps
+  type: stepList
+
+jobs:
+- job: ${{ parameters.name }}
+
+  ${{ if ne(parameters.displayName, '') }}:
+    displayName: '${{ parameters.displayName }}'
+
+  ${{ if ne(length(parameters.dependsOn), 0) }}:
+    dependsOn: ${{ parameters.dependsOn }}
+
+  ${{ if ne(parameters.condition, '') }}:
+    condition: ${{ parameters.condition }}
+
+  ${{ if ne(length(parameters.variables), 0) }}:
+    variables: 
+    - ${{ parameters.variables }}
+
+  timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+
+  ${{ if eq(parameters.deploymentOs, 'windows') }}:
+    # Windows
+    ${{ if in(parameters.environment, 'n', 'd', 'q') }}:
+      pool: EUS2-${{ upper(parameters.agentPoolShortName) }}-DEVPOOL01
+    ${{ else }}:
+      pool: EUS2-${{ upper(parameters.agentPoolShortName) }}-PRODPOOL01
+  ${{ else }}:
+    # Linux
+    ${{ if in(parameters.environment, 'n', 'd', 'q') }}:
+      pool: EUS2-${{ upper(parameters.agentPoolShortName) }}-LINUXDEVPOOL01
+    ${{ else }}:
+      pool: EUS2-${{ upper(parameters.agentPoolShortName) }}-LINUXPRODPOOL01
+  
+  steps: 
+  - ${{ parameters.steps }}

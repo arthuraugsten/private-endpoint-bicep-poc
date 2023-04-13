@@ -1,0 +1,105 @@
+parameters:
+- name: location
+  displayName: 'Location where the Private Endpoint will be created.'
+  type: string
+  default: eastus2
+  values:
+    - eastus2
+    - centralus
+
+- name: environment
+  displayName: 'Environment'
+  type: string
+  values:
+    - 'n'
+    - 'p'
+
+- name: resourceType
+  displayName: 'Resource Type'
+  type: string
+  values:
+    - Cosmos
+    - DataBricks
+    - DataFactory
+    - EventGrid
+    - KeyVault
+    - Redis
+    - SqlServer
+    - Storage
+
+- name: resourceName
+  displayName: 'Resource name where the Private Endpoint will be attached.'
+  type: string
+
+- name: resourceGroup
+  displayName: 'Resource group used to host the target resource.'
+  type: string
+
+- name: groupIds
+  displayName: 'Group IDs used to create private endpoints. Applicable for SA only.'
+  type: string
+  default: ' '
+
+trigger: 'none'
+name: '$(Date:yyyyMMdd).$(Rev:r) - Resource (${{ parameters.resourceName }}) Resource Group (${{ parameters.resourceGroup }}) - Environment (${{ parameters.environment }}) - Type (${{ parameters.resourceType }})'
+appendCommitMessageToRunName: false
+
+jobs:
+- template: /pipelines/internals/job.yml
+  parameters:
+    name: 'PrivateEndoint_Deploy'
+    displayName: 'Deploying Private Endpoint'
+    agentPoolShortName: 'cldeng'
+    deploymentOs: 'linux'
+    environment: 'n'
+    steps:
+      - task: AzureCLI@2
+        name: 'PE_Deploy'
+        displayName: 'Provisioning Private Endpoint'
+        continueOnError: false
+        inputs:
+          azureSubscription: 'cldeng-svc-conn-prod'
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          addSpnToEnvironment: false
+          useGlobalConfig: true
+          failOnStandardError: false
+          inlineScript: |
+            if [ "${{ parameters.location }}" = 'eastus2' ]; then
+              LOCATION=eus2
+            elif [ "${{ parameters.location }}" = 'centralus' ]; then
+              LOCATION=cus
+            elif [ "${{ parameters.location }}" = 'southeastasia' ]; then
+              LOCATION=sea
+            fi
+
+            if [ "${{ parameters.groupIds }}" = " " ] || [ "${{ parameters.groupIds }}" = "" ]; then
+              az deployment group create -g ${LOCATION}rgplink${{ parameters.environment }}01 \
+                -n ${{ parameters.resourceName }}-private-endpoint \
+                -f "./src/network/private-endpoints/private-endpoint-${{ lower(parameters.resourceType) }}.bicep" \
+                --mode Incremental \
+                -p location=${{ parameters.location }} \
+                  environment=${{ parameters.environment }} \
+                  resourceName=${{ parameters.resourceName }} \
+                  resourceGroupName=${{ parameters.resourceGroup }}
+            else
+              GROUP_IDS="("
+
+              LIST=(${{ parameters.groupIds }})
+
+              for groupId in "${LIST[@]}"; do
+                  GROUP_IDS+="\"${groupId}\","
+              done
+
+              GROUP_IDS+=")"
+              
+              az deployment group create -g ${LOCATION}rgplink${{ parameters.environment }}01 \
+                -n ${{ parameters.resourceName }}-private-endpoint \
+                -f "./src/network/private-endpoints/private-endpoint-${{ lower(parameters.resourceType) }}.bicep" \
+                --mode Incremental \
+                -p location=${{ parameters.location }} \
+                  environment=${{ parameters.environment }} \
+                  resourceName=${{ parameters.resourceName }} \
+                  resourceGroupName=${{ parameters.resourceGroup }} \
+                  groupIds="$GROUP_IDS"
+            fi

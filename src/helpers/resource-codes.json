@@ -1,0 +1,19 @@
+{
+    "appServiceEnvironment": "ase",
+    "appService": "as",
+    "functionApp": "fn",
+    "storageAccount": "sa",
+    "keyVault": "kv",
+    "eventGridDomain": "eg",
+    "cosmosDbAccount": "cdb",
+    "dataFactory": "df",
+    "dataBricks": "dbr",
+    "sqlServer": "dbs",
+    "sqlDatabase": "sdb",
+    "logicApp": "la",
+    "apiConnections": "api",
+    "apiManagementService": "am",
+    "dataLakeStore": "dls",
+    "integrationServiceEnvironment": "ise",
+    "managedIdentity": "mi"
+}

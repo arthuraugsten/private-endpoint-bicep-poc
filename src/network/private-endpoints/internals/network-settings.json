@@ -1,0 +1,141 @@
+{
+  "vnet": {
+    "eastus2": {
+      "resourceGroup": "east-us2-rg-net",
+      "name": "east-us2-vn-pl",
+      "prefix": "10.152"
+    },
+    "centralus": {
+      "resourceGroup": "c-us-rg-net",
+      "name": "c-us-vn-pl",
+      "prefix": "10.252"
+    },
+    "southeastasia": {
+      "resourceGroup": "se-asia-rg-net",
+      "name": "se-asia-vn-pl",
+      "prefix": "10.196"
+    }
+  },
+  "subnet": {
+    "Development": {
+      "sn": {
+        "APIS": "64",
+        "QRPSB": "68",
+        "QIS": "68",
+        "Meridian": "68",
+        "BPM": "72",
+        "IMS": "72",
+        "FC&D": "72",
+        "STP": "72",
+        "IT Ops": "76",
+        "Breakwater": "80",
+        "MDM": "80",
+        "DNA": "80",
+        "HVDP": "84",
+        "HVFinApps": "84",
+        "HVPDM": "84",
+        "Warrants Automation": "84"
+      }
+    },
+    "QA": {
+      "sn": {
+        "APIS": "64",
+        "QRPSB": "68",
+        "QIS": "68",
+        "Meridian": "68",
+        "BPM": "72",
+        "IMS": "72",
+        "FC&D": "72",
+        "STP": "72",
+        "IT Ops": "76",
+        "Breakwater": "80",
+        "MDM": "80",
+        "DNA": "80",
+        "HVDP": "84",
+        "HVFinApps": "84",
+        "HVPDM": "84",
+        "Warrants Automation": "84"
+      }
+    },
+    "Integration": {
+      "sn": {
+        "APIS": "64",
+        "QRPSB": "68",
+        "QIS": "68",
+        "Meridian": "68",
+        "BPM": "72",
+        "IMS": "72",
+        "FC&D": "72",
+        "STP": "72",
+        "IT Ops": "76",
+        "Breakwater": "80",
+        "MDM": "80",
+        "DNA": "80",
+        "HVDP": "84",
+        "HVFinApps": "84",
+        "HVPDM": "84",
+        "Warrants Automation": "84"
+      }
+    },
+    "UAT": {
+      "sn": {
+        "APIS": "128",
+        "QRPSB": "132",
+        "QIS": "132",
+        "Meridian": "132",
+        "BPM": "136",
+        "IMS": "136",
+        "FC&D": "136",
+        "STP": "136",
+        "IT Ops": "140",
+        "Breakwater": "144",
+        "MDM": "144",
+        "DNA": "144",
+        "HVDP": "148",
+        "HVFinApps": "148",
+        "HVPDM": "148",
+        "Warrants Automation": "148"
+      }
+    },
+    "Staging": {
+      "sn": {
+        "APIS": "128",
+        "QRPSB": "132",
+        "QIS": "132",
+        "Meridian": "132",
+        "BPM": "136",
+        "IMS": "136",
+        "FC&D": "136",
+        "STP": "136",
+        "IT Ops": "140",
+        "Breakwater": "144",
+        "MDM": "144",
+        "DNA": "144",
+        "HVDP": "148",
+        "HVFinApps": "148",
+        "HVPDM": "148",
+        "Warrants Automation": "148"
+      }
+    },
+    "Production": {
+      "sn": {
+        "APIS": "128",
+        "QRPSB": "132",
+        "QIS": "132",
+        "Meridian": "132",
+        "BPM": "136",
+        "IMS": "136",
+        "FC&D": "136",
+        "STP": "136",
+        "IT Ops": "140",
+        "Breakwater": "144",
+        "MDM": "144",
+        "DNA": "144",
+        "HVDP": "148",
+        "HVFinApps": "148",
+        "HVPDM": "148",
+        "Warrants Automation": "148"
+      }
+    }
+  }
+}
