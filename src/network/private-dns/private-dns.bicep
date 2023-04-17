@@ -1,9 +1,9 @@
 @description('The Azure location/data center to deploy to.')
 param location string
 
-@minLength(3)
-@maxLength(12)
-@description('3-12 lowercase character name/ID of application.  Can only contain letters, no numbers, symbols, or spaces.')
+@minLength(1)
+@maxLength(63)
+@description('1-63 lowercase character name of private zone.')
 param name string
 
 resource dnsDeploy 'Microsoft.Network/privateDnsZones@2020-06-01' = {

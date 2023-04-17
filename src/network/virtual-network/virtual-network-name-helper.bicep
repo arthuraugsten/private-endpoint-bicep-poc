@@ -7,9 +7,9 @@ param shortName string
 
 param sequence string = ''
 
-var locationCode = loadJsonContent('../internals/location-settings.json')[location]
-var name = '${locationCode}-VN-${shortName}${sequence}'
-var resourceGroup = '${locationCode}-RG-NET'
+var locationCode = loadJsonContent('./internals/location-settings.json')[location]
+var name = toUpper('${locationCode}-VN-${shortName}${sequence}')
+var resourceGroup = toUpper('${locationCode}-RG-NET')
 
 output name string = name
 output resourceGroup string = resourceGroup

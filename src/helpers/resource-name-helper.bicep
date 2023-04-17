@@ -1,7 +1,7 @@
-// Parameters
 @description('The type of resource to generate the name for.')
 @allowed([
   'appServiceEnvironment'
+  'appServicePlan'
   'appService'
   'functionApp'
   'storageAccount'
@@ -44,10 +44,8 @@ param sequence string = '01'
 @description('The Azure location/data center to deploy to.')
 param location string
 
-// Variables
 var sharedResourceTypes = json(loadTextContent('./resource-codes.json'))
 var sharedLocationCodes = json(loadTextContent('./location-codes.json'))
 var resourceName = '${sharedLocationCodes[location]}${sharedResourceTypes[resourceType]}${shortName}${environment}${sequence}'
 
-// Outputs
 output resourceName string = resourceName
