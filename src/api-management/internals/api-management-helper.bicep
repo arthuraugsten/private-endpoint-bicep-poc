@@ -14,7 +14,7 @@ resource apiManagement 'Microsoft.ApiManagement/service@2022-08-01' = {
     name: sku
   }
   identity: {
-    type: 'None'
+    type: 'SystemAssigned'
   }
   properties: {
     customProperties: {
@@ -25,29 +25,30 @@ resource apiManagement 'Microsoft.ApiManagement/service@2022-08-01' = {
       'Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls11': 'false'
       'Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Ssl30': 'false'
       'Microsoft.WindowsAzure.ApiManagement.Gateway.Protocols.Server.Http2': 'false'
+      
+      // Disabling weak ciphers
+      'Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA': 'false'
+      'Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA': 'false'
+      'Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TLS_RSA_WITH_AES_128_GCM_SHA256': 'false'
+      'Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TLS_RSA_WITH_AES_256_CBC_SHA256': 'false'
+      'Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TLS_RSA_WITH_AES_128_CBC_SHA256': 'false'
+      'Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TLS_RSA_WITH_AES_256_CBC_SHA': 'false'
+      'Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TLS_RSA_WITH_AES_128_CBC_SHA': 'false'
+      'Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TripleDes168': 'false'
     }
     // hostnameConfigurations: [
     //   {
-    //     certificate: {
-    //       expiry: 'string'
-    //       subject: 'string'
-    //       thumbprint: 'string'
-    //     }
-    //     certificatePassword: 'string'
-    //     certificateSource: 'string'
-    //     certificateStatus: 'string'
-    //     defaultSslBinding: bool
-    //     encodedCertificate: 'string'
-    //     hostName: 'string'
-    //     identityClientId: 'string'
-    //     keyVaultId: 'string'
-    //     negotiateClientCertificate: bool
-    //     type: 'string'
+    //     defaultSslBinding: true
+    //     hostName: '${hostname}.augsten.com.br'
+    //     //identityClientId: 'string'
+    //     keyVaultId: certificateSecretUri
+    //     negotiateClientCertificate: false
+    //     type: 'Proxy'
     //   }
     // ]
     publicIpAddressId: publicIpId
     publicNetworkAccess: 'Enabled'
-    publisherEmail: 'bcollins@harbourvest.com'
+    publisherEmail: 'arthuraugsten@outlook.com'//'bcollins@harbourvest.com'
     publisherName: 'HarbourVest'
     virtualNetworkConfiguration: {
       subnetResourceId: subnetId

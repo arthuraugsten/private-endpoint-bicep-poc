@@ -5,7 +5,7 @@ param operationalSystem string
 param size string
 param instanceCount int
 
-resource servicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
+resource servicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   name: name
   location: location
   tags: { 'HV-Source': 'Bicep' }

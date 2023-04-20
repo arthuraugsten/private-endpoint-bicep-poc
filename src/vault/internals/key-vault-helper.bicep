@@ -6,7 +6,7 @@ param enableForTemplateDeployment bool
 param enableRbacAuthorization bool
 param microsoftServiceByPassFirewall string
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
+resource keyVault 'Microsoft.KeyVault/vaults@2023-02-01' = {
   name: keyVaultName
   location: location
   tags: union(resourceGroup().tags, { 'HV-Source': 'Bicep' })

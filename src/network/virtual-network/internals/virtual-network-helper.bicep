@@ -5,7 +5,7 @@ param dnsServers array
 param subnets array
 param virtualNetworkPeerings array = []
 
-resource networkDeploy 'Microsoft.Network/virtualNetworks@2022-07-01' = {
+resource networkDeploy 'Microsoft.Network/virtualNetworks@2022-09-01' = {
   name: vnetName
   location: location
   tags: union(resourceGroup().tags, { 'HV-Source': 'Bicep' })

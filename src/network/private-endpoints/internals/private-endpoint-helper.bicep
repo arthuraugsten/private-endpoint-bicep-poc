@@ -9,7 +9,7 @@ var dnsConfigs = loadJsonContent('dns-settings.json')
 var networkJson = loadJsonContent('network-settings.json')
 var vnetLocationConfig = networkJson.vnet[location]
 
-resource vnetPE 'Microsoft.Network/virtualNetworks@2022-07-01' existing = {
+resource vnetPE 'Microsoft.Network/virtualNetworks@2022-09-01' existing = {
   name: vnetLocationConfig.name
   scope: resourceGroup(vnetLocationConfig.resourceGroup)
 
@@ -24,7 +24,7 @@ resource privateDnsZones 'Microsoft.Network/privateDnsZones@2020-06-01' existing
   scope: resourceGroup(dnsConfigs.resourceGroup[location])
 }]
 
-resource privateEndpoints 'Microsoft.Network/privateEndpoints@2022-07-01' = [for groupId in groupIds: {
+resource privateEndpoints 'Microsoft.Network/privateEndpoints@2022-09-01' = [for groupId in groupIds: {
   name: 'pep-${resourceName}-${groupId}'
   location: location
   tags: union(tags, { 'HV-Source': 'Bicep' })
@@ -44,7 +44,7 @@ resource privateEndpoints 'Microsoft.Network/privateEndpoints@2022-07-01' = [for
   }
 }]
 
-resource privateDnsGroup 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2021-05-01' = [for (groupId, index) in groupIds: {
+resource privateDnsGroup 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2022-09-01' = [for (groupId, index) in groupIds: {
   name: 'default-${resourceName}-${groupId}'
   parent: privateEndpoints[index]
   properties: {

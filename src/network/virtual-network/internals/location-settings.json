@@ -1,5 +1,14 @@
 {
-  "eastus2": "EAST-US2",
-  "centralus": "CUS",
-  "southeastasia": "SEA-ASIA"
+  "eastus2": {
+    "code": "EAST-US2",
+    "resourceGroup": "EAST-US2-RG-NET"
+  },
+  "centralus": {
+    "code": "CUS",
+    "resourceGroup": "CUS-RG-NET"
+  },
+  "southeastasia": {
+    "code": "SEA-ASIA",
+    "resourceGroup": "SEA-ASIA-RG-NET"
+  }
 }

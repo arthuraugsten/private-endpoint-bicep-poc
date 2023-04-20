@@ -25,7 +25,7 @@ param resourceGroupName string
 
 var locationCode = loadJsonContent('../internals/location-settings.json')[location]
 
-resource resource 'Microsoft.Databricks/workspaces@2018-04-01' existing = {
+resource resource 'Microsoft.Databricks/workspaces@2023-02-01' existing = {
   name: resourceName
   scope: resourceGroup(resourceGroupName)
 }

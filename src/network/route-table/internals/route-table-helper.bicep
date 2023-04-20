@@ -3,7 +3,7 @@ param location string
 param disableBgpRoutePropagation bool
 param routes array
 
-resource routeTableDeploy 'Microsoft.Network/routeTables@2022-07-01' = {
+resource routeTableDeploy 'Microsoft.Network/routeTables@2022-09-01' = {
   name: name
   location: location
   tags: union(resourceGroup().tags, { 'HV-Source': 'Bicep' })

@@ -25,7 +25,7 @@ param resourceGroupName string
 
 var locationCode = loadJsonContent('../internals/location-settings.json')[location]
 
-resource resource 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+resource resource 'Microsoft.KeyVault/vaults@2023-02-01' existing = {
   name: resourceName
   scope: resourceGroup(resourceGroupName)
 }

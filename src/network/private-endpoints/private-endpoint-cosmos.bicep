@@ -25,7 +25,7 @@ param resourceGroupName string
 
 var locationCode = loadJsonContent('../internals/location-settings.json')[location]
 
-resource resource 'Microsoft.DocumentDB/databaseAccounts@2022-08-15' existing = {
+resource resource 'Microsoft.DocumentDB/databaseAccounts@2022-11-15' existing = {
   name: resourceName
   scope: resourceGroup(resourceGroupName)
 }

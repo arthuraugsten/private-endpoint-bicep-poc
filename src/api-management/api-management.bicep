@@ -75,8 +75,11 @@ module nameHelper '../helpers/resource-name-helper.bicep' = {
   }
 }
 
+var locationSettings = loadJsonContent('../network/virtual-network/internals/location-settings.json')[location]
+
 module publicIp '../network/public-ip/public-ip.bicep' = {
   name: 'dpl-pip-${resourceShortName}${sequence}-${environment}'
+  scope: resourceGroup(locationSettings.resourceGroup)
   params: {
     environment: environment
     location: location

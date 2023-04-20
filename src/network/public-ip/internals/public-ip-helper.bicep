@@ -2,7 +2,7 @@ param location string
 param resourceName string
 param sku string
 
-resource publicIp 'Microsoft.Network/publicIPAddresses@2022-07-01' = {
+resource publicIp 'Microsoft.Network/publicIPAddresses@2022-09-01' = {
   name: resourceName
   location: location
   tags: { 'HV-Source': 'Bicep' }

@@ -43,7 +43,7 @@ param rules array = [
 var locationCode = loadJsonContent('../../helpers/location-codes.json')[location]
 var subnetOctects = split(subnetAddressSpace, '.')
 
-resource nsgDeployment 'Microsoft.Network/networkSecurityGroups@2022-07-01' = {
+resource nsgDeployment 'Microsoft.Network/networkSecurityGroups@2022-09-01' = {
   name: empty(name) ? '${locationCode}nsg-${subnetOctects[1]}-${subnetOctects[2]}-${subnetOctects[3]}' : name
   location: location
   tags: union(resourceGroup().tags, { 'HV-Source': 'Bicep' })

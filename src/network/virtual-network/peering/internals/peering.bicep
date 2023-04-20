@@ -7,15 +7,15 @@ param allowVirtualNetworkAccess bool
 param doNotVerifyRemoteGateways bool
 param useRemoteGateways bool
 
-resource sourceNetwork 'Microsoft.Network/virtualNetworks@2022-07-01' existing = {
+resource sourceNetwork 'Microsoft.Network/virtualNetworks@2022-09-01' existing = {
   name: sourceNetworkName
 }
 
-resource destinationNetwork 'Microsoft.Network/virtualNetworks@2022-07-01' existing = {
+resource destinationNetwork 'Microsoft.Network/virtualNetworks@2022-09-01' existing = {
   name: destinationNetworkName
 }
 
-resource peeringDeploy 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2022-07-01' = {
+resource peeringDeploy 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2022-09-01' = {
   name: name
   parent: sourceNetwork
   properties: {

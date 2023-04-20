@@ -2,7 +2,7 @@ param location string
 param resourceName string
 param subnetId string
 
-resource aseDeployment 'Microsoft.Web/hostingEnvironments@2022-03-01' = {
+resource aseDeployment 'Microsoft.Web/hostingEnvironments@2022-09-01' = {
   name: resourceName
   location: location
   tags: union(resourceGroup().tags, { 'HV-Source': 'Bicep' })
